@@ -71,7 +71,7 @@ Now in the web shell check the /home/user and we can see this user:
 
 try to connect on ssh with this user and the same password of tiffany email
 ```
-ssh tiffany@dog.htb
+ssh johncusack@10.10.11.58
 ```
 
 USER.TXT IS FLAGGED !
