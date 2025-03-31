@@ -1,15 +1,23 @@
-# CTF Challenge: Tracking the Target's New Phone Number
-
+# BREIZHCTF Misc Challenge: Burner Phone
 ## Objective
+<div align="center">
+  <img src="https://github.com/10T4/write-up/blob/main/images/Image4.png" alt="breizhctf">
+</div>
 
 The goal of this challenge is to track a target who frequently changes their phone number to avoid being traced.
 
 ## Initial Investigation
 
 This **MISC** challenge starts with access to an FBI investigation tool for phone numbers. We are given the last **three phone numbers** used by the target. Using the **FBI tool's** web interface, we can retrieve various details about a phone number, including:
+- The **Owner**
 - The **operator**
 - The **last known location**
+- The Range numbers phone
 - The **phone's password** (which is of key interest to us)
+
+<div align="center">
+  <img src="https://github.com/10T4/write-up/blob/main/images/Image6.png" alt="breizhctf">
+</div>
 
 Our first attempt is to create a script that lists all phone numbers from each operator (**BreizhCTF, Blue, C6**), but this yields no useful information. We then try filtering based on location, but the resulting list is too long to be practical.
 
@@ -20,6 +28,10 @@ We notice that for the last **three phone numbers** used by the target, the **pa
 ## Extracting the Phone Number Range
 
 Using the FBI tool, we retrieve the **entire phone number range** for the target’s operator, which contains **693 numbers**.
+
+<div align="center">
+  <img src="https://github.com/10T4/write-up/blob/main/images/Image6.png" alt="breizhctf">
+</div>
 
 ### Automating the Search
 
@@ -111,6 +123,9 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+<div align="center">
+  <img src="https://github.com/10T4/write-up/blob/main/images/Image7.png" alt="breizhctf">
+</div>
 
 ## Conclusion
 
