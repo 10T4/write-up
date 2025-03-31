@@ -70,6 +70,11 @@ sqlite> select * from user;
 2|martin|3de6f30c4a09c27fc71932bfc68474be
 3|sojlen|202cb962ac59075b964b07152d234b70
 ```
+We found MD5 hashed password, let's go crack that with Hashcat
+
+<div align="center">
+  <img src="https://github.com/iota4/write-up/images/image1.png" alt="hashcat">
+</div>
 
 Thus, we obtain **Martin's** password.
 
