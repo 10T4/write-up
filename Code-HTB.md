@@ -136,6 +136,9 @@ done
 ```
 
 We exploit a flaw in the script to execute arbitrary commands.
+<div align="center">
+  <img src="https://github.com/10T4/write-up/blob/main/images/Image2.png" alt="arbitrary-command">
+</div>
 
 ### Exploitation
 
@@ -144,6 +147,9 @@ We can use **tar** to extract sensitive content into `/home/martin/backup/`:
 ```bash
 tar -xvf code
 ```
+<div align="center">
+  <img src="https://github.com/10T4/write-up/blob/main/images/Image3.png" alt="root-access">
+</div>
 
 This grants us access to the necessary files to gain **root** access.
 
