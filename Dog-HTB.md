@@ -2,7 +2,11 @@
 
 We have 2 port open
 - 22
-- 80 
+- 80
+
+<div align="center">
+  <img src="https://github.com/10T4/write-up/blob/main/images/Image8.png" alt="dogwebsite">
+</div>
 
 on the port 80 we have CMS backdrop with 2 pages:
 - Login
@@ -11,6 +15,10 @@ on the port 80 we have CMS backdrop with 2 pages:
 About page contains only images & text, so nothing to exploit. But Login contains 2 input (email & password) so we can login after get some creds
 
 if you Fuzz directory we can discover "/.git", so go to upload all source code:
+
+<div align="center">
+  <img src="https://github.com/10T4/write-up/blob/main/images/Image9.png" alt="doggit">
+</div>
 
 
 Wget all files on .git:
