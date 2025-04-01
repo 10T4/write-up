@@ -4,6 +4,10 @@
 
 We notice that port **5000** is open with the **HTTP** protocol. When accessing it, we discover an online Python compiler. Our first attempt is to list the available classes using the following script:
 
+<div align="center">
+  <img src="https://github.com/10T4/write-up/blob/main/images/Image12.png" alt="codeweb">
+</div>
+
 ```python
 for i, cls in enumerate(''.__class__.__mro__[1].__subclasses__()):
     print(f"Index {i}: {cls.__name__}")
