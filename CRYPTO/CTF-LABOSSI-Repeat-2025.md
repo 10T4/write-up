@@ -40,6 +40,7 @@ Since XOR encryption is vulnerable to a known-plaintext attack, we can leverage 
 
 Using this information, we can recover the key:
 
+```
 known_text = b"RETRO{"
 key_bytes = []
 
@@ -49,6 +50,7 @@ for i in range(len(known_text)):
 
 discovered_key = bytes(key_bytes)
 print("Discovered key:", discovered_key.hex())
+```
 
 Recovered Key:
 
@@ -57,7 +59,7 @@ f66efbe0bc06
 Decryption Process
 
 Now that we have the key, we can use it to decrypt the entire message:
-
+```
 import binascii
 
 # Encrypted flag (hex format)
@@ -73,7 +75,7 @@ for i in range(len(encrypted)):
     decrypted += bytes([encrypted[i] ^ key[i % len(key)]])
 
 print(decrypted.decode('ascii'))
-
+```
 Final Decrypted Flag:
 
 ** RETRO{Alw4ys_Th3_S4me_St0Ry} **
