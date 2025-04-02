@@ -83,5 +83,5 @@ print(decrypted.decode('ascii'))
 ```
 Final Decrypted Flag:
 
-** RETRO{Alw4ys_Th3_S4me_St0Ry} **
+**RETRO{Alw4ys_Th3_S4me_St0Ry}**
 
