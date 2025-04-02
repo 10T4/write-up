@@ -1,8 +1,11 @@
 Write-up: Challenge "REPEAT"
 
 Challenge Description
+```
+Each CTF has its own XOR challenge
 
-We are given a Python script implementing a simple XOR encryption scheme, along with a hexadecimal string representing the encrypted flag.
+Flag: RETRO{value}
+```
 
 Given Python Code:
 ```
