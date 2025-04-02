@@ -56,5 +56,5 @@ docker history mrzerkeur/almost_empty_container:latest --no-trunc
    RETRO{N0_B1NARY}
    ```
 
-🎯 **FLAG: RETRO{N0_B1NARY}** 🎯
+ **FLAG: RETRO{N0_B1NARY}**
 
