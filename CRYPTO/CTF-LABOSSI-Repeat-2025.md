@@ -5,7 +5,7 @@ Challenge Description
 We are given a Python script implementing a simple XOR encryption scheme, along with a hexadecimal string representing the encrypted flag.
 
 Given Python Code:
-
+```
 import os
 key = os.urandom(6)
 
@@ -17,10 +17,12 @@ def encrypt(data):
 
 def decrypt(data):
     return encrypt(data)
+````
 
 Encrypted Flag (flag_enc.txt):
-
+````
 a42bafb2f37db7028cd4c575a93a93d3e355c2039ebfef72c63c829d
+````
 
 Understanding the Code
 
