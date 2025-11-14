@@ -6,7 +6,7 @@ Start a nmap enumeration:
 nmap -sV -T4 -Pn 10.129.244.23
 ```
 <div align="center">
-  <img src="https://github.com/10T4/write-up/blob/main/images/Image15.png" alt="d">
+  <img src="https://github.com/10T4/write-up/blob/main/images/image15.png" alt="d">
 </div>
 
 Screen result 
