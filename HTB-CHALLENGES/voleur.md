@@ -28,6 +28,7 @@ nxc smb voleur.htb -u 'ryan.naylor' -p 'HollowOct31Nyt' --shares
   <img src="https://github.com/10T4/write-up/blob/main/images/voleur-ntlm.png" alt="d">
 </div>
 NTLM:False --> So we need a kerberos authentification, create your TGT ticket:
+
 ````
 kinit ryan.naylor@VOLEUR.HTB
 
