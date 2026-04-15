@@ -1,6 +1,4 @@
 
----
-
 ## Procédure de montage
 
 ### Prérequis
